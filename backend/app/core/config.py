@@ -1,7 +1,6 @@
 from functools import lru_cache
 from typing import List
 
-from pydantic import AnyUrl
 from pydantic_settings import BaseSettings
 
 
@@ -9,8 +8,9 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "CF Ops & Observability"
     API_V1_PREFIX: str = "/api"
 
-    POSTGRES_DSN: AnyUrl = "postgresql+psycopg2://cfops:cfops@postgres:5432/cfops"
-    CLICKHOUSE_DSN: str = "clickhouse://clickhouse:9000"
+    # Usar str para DSN evita incompatibilidades de parsing em ambientes diferentes
+    POSTGRES_DSN: str = "postgresql+psycopg2://cfops:cfops@localhost:5432/cfops"
+    CLICKHOUSE_DSN: str = "clickhouse://localhost:9000"
 
     JWT_SECRET_KEY: str = "CHANGE_ME"
     JWT_ALGORITHM: str = "HS256"
