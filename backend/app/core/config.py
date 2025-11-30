@@ -1,5 +1,7 @@
 from functools import lru_cache
-from pydantic import BaseSettings, AnyUrl
+from typing import List
+
+from pydantic import AnyUrl, BaseSettings
 
 
 class Settings(BaseSettings):
@@ -17,6 +19,8 @@ class Settings(BaseSettings):
     LOGPUSH_SHARED_SECRET: str = "CHANGE_ME"
 
     REDIS_URL: str = "redis://redis:6379/0"
+
+    BACKEND_CORS_ORIGINS: List[str] = []
 
     class Config:
         env_file = ".env"
