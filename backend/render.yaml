@@ -13,4 +13,4 @@ services:
       - key: LOGPUSH_SHARED_SECRET
         value: CHANGE_ME
       - key: BACKEND_CORS_ORIGINS
-        value: '["https://seu-frontend.vercel.app"]'
+        value: '["http://blank-project-psi.vercel.app/"]'
