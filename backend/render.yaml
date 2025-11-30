@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: cf-ops-observability-backend
+    env: python
+    plan: free
+    buildCommand: pip install --no-cache-dir -r backend/requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    envVars:
+      - key: POSTGRES_DSN
+        value: postgresql+psycopg2://cfops:cfops@postgres:5432/cfops
+      - key: CLICKHOUSE_DSN
+        value: clickhouse://clickhouse:9000
+      - key: LOGPUSH_SHARED_SECRET
+        value: CHANGE_ME
+      - key: BACKEND_CORS_ORIGINS
+        value: '["https://seu-frontend.vercel.app"]'
